@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>琢砚科技 Scultra Scientific - 精准血管介入解决方案</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gray: #5A5A5A;
+            --dark-gray: #3D3D3D;
+            --accent-orange: #F26522;
+            --light-orange: #FFF3EB;
+            --text-dark: #1A1A1A;
+            --text-gray: #666666;
+            --text-light: #999999;
+            --white: #FFFFFF;
+            --bg-light: #FAFAFA;
+            --border: #E5E7EB;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* ===== 导航栏 ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0 5%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            height: 70px;
+        }
+
+        /* Nav link colors are dark by default, no scroll change needed */
+
+        /* Logo colors are dark by default, no scroll change needed */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text-cn {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+
+        .logo-text-en {
+            font-size: 10px;
+            color: var(--text-gray);
+            opacity: 0.8;
+            font-weight: 500;
+            margin-top: -2px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        /* Logo colors are dark by default, no scroll change needed */
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-size: 15px;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-orange);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 10px 24px;
+            background: var(--accent-orange);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: #d9551a;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--dark-gray);
+            margin: 6px 0;
+            transition: 0.3s;
+        }
+
+        /* Mobile menu colors are dark by default, no scroll change needed */
+
+        /* ===== Hero 区域 - 白色背景 ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero-bg-accent {
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(242, 101, 34, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-bg-accent-2 {
+            position: absolute;
+            bottom: -10%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(90, 90, 90, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent-orange);
+        }
+
+        .hero-text .hero-subtitle {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--accent-orange);
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-gray);
+            max-width: 500px;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            padding: 16px 36px;
+            background: var(--accent-orange);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #d9551a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(242, 101, 34, 0.25);
+        }
+
+        .btn-secondary {
+            padding: 16px 36px;
+            background: transparent;
+            color: var(--dark-gray);
+            text-decoration: none;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-light);
+            border-color: var(--primary-gray);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-visual img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .floating-card {
+            position: absolute;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            color: var(--dark-gray);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card.card-1 {
+            top: 10%;
+            right: -10px;
+            animation-delay: 0s;
+        }
+
+        .floating-card.card-2 {
+            bottom: 15%;
+            left: -20px;
+            animation-delay: 3s;
+        }
+
+        .floating-card h4 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-orange);
+        }
+
+        .floating-card p {
+            font-size: 12px;
+            color: var(--text-gray);
+            margin-top: 4px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 12px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* ===== 使命区域 ===== */
+        .mission {
+            padding: 120px 5%;
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--light-orange);
+            color: var(--accent-orange);
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .mission-card {
+            padding: 50px 30px;
+            border-radius: 20px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-gray), var(--accent-orange));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: transparent;
+        }
+
+        .mission-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--light-orange), #ffe8d6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 36px;
+        }
+
+        .mission-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 16px;
+        }
+
+        .mission-card p {
+            font-size: 16px;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* ===== 产品区域 ===== */
+        .products {
+            padding: 120px 5%;
+            background: var(--white);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s;
+            border: 1px solid var(--border);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+        }
+
+        .product-image {
+            height: 300px;
+            background: linear-gradient(135deg, #f5f5f5, #ebebeb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 6px 16px;
+            background: var(--accent-orange);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 20px;
+        }
+
+        .product-info {
+            padding: 35px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 12px;
+        }
+
+        .product-info p {
+            font-size: 16px;
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+
+        .product-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: gap 0.3s;
+        }
+
+        .product-link:hover {
+            gap: 12px;
+        }
+
+        /* ===== 数据区域 ===== */
+        .stats {
+            padding: 100px 5%;
+            background: var(--bg-light);
+            color: var(--dark-gray);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent-orange);
+        }
+
+        .stat-item p {
+            font-size: 16px;
+            color: var(--text-gray);
+        }
+
+        /* ===== 新闻区域 ===== */
+        .news {
+            padding: 120px 5%;
+            background: var(--white);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .news-card {
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--border);
+            transition: all 0.4s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .news-image {
+            height: 220px;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-content {
+            padding: 30px;
+        }
+
+        .news-date {
+            font-size: 13px;
+            color: var(--accent-orange);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .news-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .news-content p {
+            font-size: 15px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* ===== CTA 区域 ===== */
+        .cta {
+            padding: 120px 5%;
+            background: var(--bg-light);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(242, 101, 34, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .cta h2 {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta p {
+            font-size: 20px;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== 页脚 ===== */
+        .footer {
+            background: var(--dark-gray);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 80px 5% 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo-text-cn {
+            color: var(--white);
+            font-size: 22px;
+            margin-bottom: 4px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .footer-brand .logo-text-en {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-brand p {
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 14px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text p {
+                margin: 0 auto 40px;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .mission-grid,
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .hero-text .hero-subtitle {
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .mission-grid,
+            .news-grid,
+            .stats-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* 动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <img src="data:image/jpeg;base64,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" alt="Scultra Scientific Logo">
+            </div>
+            <div>
+                <div class="logo-text-cn">琢砚科技</div>
+                <div class="logo-text-en">Scultra Scientific</div>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#mission">关于我们</a></li>
+            <li><a href="#products">产品中心</a></li>
+            <li><a href="#news">新闻动态</a></li>
+            <li><a href="#contact">联系我们</a></li>
+        </ul>
+        <button class="nav-cta">投资者关系</button>
+        <button class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="hero-bg-accent"></div>
+        <div class="hero-bg-accent-2"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-subtitle">Innovate Precision Vascular Intervention</div>
+                <h1>以科技创新<br>呵护<span>血管健康</span></h1>
+                <p>致力于为全球患者提供精准、安全、有效的血管介入解决方案，让每一条血管都得到悉心呵护。</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn-primary">探索产品</a>
+                    <a href="#mission" class="btn-secondary">了解更多</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=500&fit=crop" alt="Medical Technology">
+                <div class="floating-card card-1">
+                    <h4>500+</h4>
+                    <p>全球医疗机构合作</p>
+                </div>
+                <div class="floating-card card-2">
+                    <h4>100%</h4>
+                    <p>自主知识产权</p>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>向下滚动</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 使命区域 -->
+    <section class="mission" id="mission">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">我们的使命</span>
+                <h2 class="section-title">精准介入，呵护血管</h2>
+                <p class="section-subtitle">以临床需求为导向，以技术创新为驱动，打造血管介入诊疗整体解决方案</p>
+            </div>
+            <div class="mission-grid">
+                <div class="mission-card fade-in">
+                    <div class="mission-icon">🔬</div>
+                    <h3>技术创新</h3>
+                    <p>持续投入研发，突破核心技术瓶颈，拥有完全自主知识产权的精准血管介入诊疗产品矩阵</p>
+                </div>
+                <div class="mission-card fade-in">
+                    <div class="mission-icon">❤️</div>
+                    <h3>临床导向</h3>
+                    <p>深入理解临床需求，与全球顶尖血管外科专家紧密合作，确保产品真正解决临床痛点</p>
+                </div>
+                <div class="mission-card fade-in">
+                    <div class="mission-icon">🌍</div>
+                    <h3>全球布局</h3>
+                    <p>产品已进入全球数十个国家和地区，为世界各地的患者提供高质量的血管介入治疗</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品区域 -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">产品中心</span>
+                <h2 class="section-title">血管内超声系统</h2>
+                <p class="section-subtitle">Intravascular Ultrasound (IVUS) — 为精准血管介入诊疗提供高清影像指导</p>
+            </div>
+            <div class="products-grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto;">
+                <div class="product-card fade-in">
+                    <div class="product-image" style="height: 400px;">
+                        <span class="product-badge">旗舰产品</span>
+                        <img src="https://www.bostonscientific.cn/media/o0mcxk5f/pic1.jpg" alt="IVUS System" style="object-fit: contain; background: #f8f9fa;">
+                    </div>
+                    <div class="product-info" style="text-align: center;">
+                        <h3>血管内超声诊断系统</h3>
+                        <p>采用先进超声成像技术，提供高分辨率血管壁360°横截面影像，精准评估血管病变程度、钙化分布及支架贴壁情况，为介入手术决策提供可靠依据。</p>
+                        <a href="#" class="product-link" style="justify-content: center;">
+                            了解详情 
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据区域 -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <h3>500+</h3>
+                    <p>全球合作医院</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>100+</h3>
+                    <p>核心专利</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>30+</h3>
+                    <p>国家和地区</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>10万+</h3>
+                    <p>临床手术支持</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 新闻区域 -->
+    <section class="news" id="news">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">新闻动态</span>
+                <h2 class="section-title">最新资讯</h2>
+                <p class="section-subtitle">关注琢砚科技的最新进展与行业动态</p>
+            </div>
+            <div class="news-grid">
+                <div class="news-card fade-in">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=500&h=300&fit=crop" alt="News 1">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">2026年2月5日</span>
+                        <h3>琢砚科技成功登陆上海证券交易所科创板</h3>
+                        <p>公司股票代码 688XXX，标志着公司发展迈入全新阶段，开启资本市场新征程。</p>
+                    </div>
+                </div>
+                <div class="news-card fade-in">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&h=300&fit=crop" alt="News 2">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">2025年9月1日</span>
+                        <h3>外周血管支架临床试验结果在 LINC 2025 重磅发布</h3>
+                        <p>研究结果证实新一代药物涂层支架在下肢动脉病变治疗中的优异通畅率和安全性。</p>
+                    </div>
+                </div>
+                <div class="news-card fade-in">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=500&h=300&fit=crop" alt="News 3">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">2025年7月26日</span>
+                        <h3>2025 琢砚科技血管健康国际论坛在深圳成功举办</h3>
+                        <p>汇聚全球血管外科领域顶尖专家，共同探讨血管介入诊疗的最新进展与未来方向。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 区域 -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2 class="fade-in">携手共创血管健康未来</h2>
+            <p class="fade-in">我们期待与全球医疗专业人士和合作伙伴建立联系，共同推动血管介入诊疗技术的进步</p>
+            <a href="#" class="btn-primary fade-in">联系我们</a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo-text-cn">琢砚科技</span>
+                    <span class="logo-text-en">Scultra Scientific</span>
+                    <p>深圳琢砚科技股份有限公司<br>
+                    致力于为全球患者提供精准血管介入解决方案<br><br>
+                    深圳市南山区科技园<br>
+                    高新技术产业园区</p>
+                </div>
+                <div class="footer-links">
+                    <h4>产品中心</h4>
+                    <ul>
+                        <li><a href="#">外周血管支架系统</a></li>
+                        <li><a href="#">神经血管介入系统</a></li>
+                        <li><a href="#">主动脉覆膜支架</a></li>
+                        <li><a href="#">球囊扩张导管</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">公司简介</a></li>
+                        <li><a href="#">管理团队</a></li>
+                        <li><a href="#">发展历程</a></li>
+                        <li><a href="#">加入我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>联系方式</h4>
+                    <ul>
+                        <li><a href="mailto:ir@scultra.com">投资者关系</a></li>
+                        <li><a href="mailto:export@scultra.com">国际销售</a></li>
+                        <li><a href="#">+86 (0755) XXXX XXXX</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 琢砚科技 Scultra Scientific. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#">in</a>
+                    <a href="#">X</a>
+                    <a href="#">f</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statItems = entry.target.querySelectorAll('h3');
+                    statItems.forEach(item => {
+                        const finalValue = item.textContent;
+                        const numericValue = parseInt(finalValue.replace(/\D/g, ''));
+                        const suffix = finalValue.replace(/[0-9]/g, '');
+
+                        let current = 0;
+                        const increment = numericValue / 50;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= numericValue) {
+                                item.textContent = numericValue + suffix;
+                                clearInterval(timer);
+                            } else {
+                                item.textContent = Math.floor(current) + suffix;
+                            }
+                        }, 30);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-grid');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
